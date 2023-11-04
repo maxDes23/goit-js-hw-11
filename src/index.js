@@ -1,4 +1,3 @@
-// index.js
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
@@ -13,7 +12,7 @@ const elements = {
 const gallery = new SimpleLightbox('.gallery a');
 let quantityImg = 0;
 let currentPage = 1;
-let loading = false; // Додаємо змінну для відстеження завантаження
+let loading = false;
 
 elements.form.addEventListener('submit', handleSubmit);
 window.addEventListener('scroll', handleScroll);
@@ -57,7 +56,7 @@ async function loadImages(searchQuery) {
     }
 
     if (data.data.totalHits > quantityImg) {
-      loading = false; // Позначте, що завантаження завершилося
+      loading = false;
     } else {
       Notify.info("Sorry, but you've reached the end of search results.");
     }

@@ -127,3 +127,24 @@ img {
   transform: translateX(0);
 }
 
+/* styles.css */
+.photo-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.photo-card img {
+  transition: transform 0.2s;
+}
+
+.photo-card:hover {
+  transform: scale(1.05);
+}
+
+.photo-card:hover img {
+  transform: scale(1.2);
+  transition: transform 0.2s;
+}
+
+

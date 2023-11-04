@@ -127,11 +127,12 @@ img {
   transform: translateX(0);
 }
 
-/* styles.css */
+
 .photo-card {
   position: relative;
   overflow: hidden;
   transition: transform 0.2s;
+  
 }
 
 .photo-card img {

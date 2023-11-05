@@ -1,7 +1,7 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import { searchService } from './searchService';
+import { searchService } from './search_app';
 
 const elements = {
   form: document.querySelector('.search-form'),

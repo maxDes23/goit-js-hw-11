@@ -1,7 +1,7 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import { SearchService } from './SearchService';
+import { searchService } from './searchService';
 
 const elements = {
   form: document.querySelector('.search-form'),
@@ -35,9 +35,11 @@ async function handleSubmit(evt) {
   loadImages(searchQuery);
 }
 
+let hasShownMessage = false;
+
 async function loadImages(searchQuery) {
   try {
-    const data = await SearchService(currentPage, searchQuery);
+    const data = await searchService(currentPage, searchQuery);
 
     if (data.data.totalHits === 0) {
       elements.message.style.display = 'block';
@@ -51,23 +53,15 @@ async function loadImages(searchQuery) {
       cardListMarkup(data.data.hits)
     );
 
-    if (data.data.totalHits !== 0) {
+    if (!hasShownMessage) {
       Notify.info(`Hooray! We found ${data.data.totalHits} images.`);
+      hasShownMessage = true;
     }
 
     if (data.data.totalHits > quantityImg) {
       loading = false;
     } else {
       Notify.info("Sorry, but you've reached the end of search results.");
-    }
-
-    if (elements.cardList.firstElementChild) {
-      const { height: cardHeight } =
-        elements.cardList.firstElementChild.getBoundingClientRect();
-      window.scrollBy({
-        top: cardHeight * 2,
-        behavior: 'smooth',
-      });
     }
   } catch (error) {
     Notify.failure(

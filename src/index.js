@@ -1,7 +1,7 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import { searchservice } from './searchservice';
+import { searchService } from './searchService';
 
 const elements = {
   form: document.querySelector('.search-form'),
@@ -39,7 +39,7 @@ let hasShownMessage = false;
 
 async function loadImages(searchQuery) {
   try {
-    const data = await searchservice(currentPage, searchQuery);
+    const data = await searchService(currentPage, searchQuery);
 
     if (data.data.totalHits === 0) {
       elements.message.style.display = 'block';

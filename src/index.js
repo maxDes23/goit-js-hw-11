@@ -23,8 +23,10 @@ async function handleSubmit(evt) {
   currentPage = 1;
   quantityImg = 0;
   loading = false;
-
-  const searchQuery = evt.target.elements.searchQuery.value.trim();
+  hasShownMessage = false;
+  const searchInput = evt.target.elements.searchQuery;
+  const searchQuery = searchInput.value.trim();
+  searchInput.value = '';
 
   if (!searchQuery) {
     return Notify.failure('Enter your search details.');
